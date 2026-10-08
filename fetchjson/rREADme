@@ -1,0 +1,7 @@
+import { json } from "stream/consumers"
+
+Typescript is just javascript with type annotation ()
+
+
+ts:const logTodo = (id: number, title: string, completed: boolean) => {
+js: const logTodo = (id, title, completed) => {
