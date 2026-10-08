@@ -8,3 +8,23 @@ Typescript is just javascript with type annotation ()
 
 ts:const logTodo = (id: number, title: string, completed: boolean) => {
 js: const logTodo = (id, title, completed) => {
+
+app.module == program.cs
+
+folder
+-> controller
+-> service
+-> module
+
+decorator: @Module -> @Controller -> @Injectable(Service) -> @Entity -> @PrimaryGeneratedColumn -> @Column
+dto decorator-> @IsEmail @IsString @MinLength
+
+new item -> item.module (setup) -> app.module (setup)
+
+command
+nest new . -> initiate new nest project
+nest g controller user -> create new user controller in its folder
+nest g module user -> create new user module in its folder
+nest g service user -> create new user service in its folder
+npm run start:dev -> start and watch
+npm install class-validator class-transformer

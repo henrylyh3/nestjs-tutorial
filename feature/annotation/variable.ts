@@ -48,3 +48,13 @@ logMessage("Hello, TypeScript!");
 function greet(name: string, greeting?: string): string {
     return `${greeting || "Hello"}, ${name}!`;
 }
+
+const json = '{"name": "Alice", "age": 25}';
+
+const parsed = JSON.parse(json);
+
+console.log(parsed);
+
+let numbers2: number[] = [-101, 22, -3, 24, -53];
+let numberAboveZero2: boolean | number = false;
+let numberAboveZero: number[] = numbers2.filter((num) => num > 0);
