@@ -29,7 +29,7 @@ export class ReportDto {
     @Expose()
     approved: boolean;
 
-    @Transform(({ value }) => value.user.id)
+    @Transform(({ obj }) => obj.user.id)
     @Expose()
     userId: number;
 }
