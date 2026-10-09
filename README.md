@@ -16,8 +16,12 @@ folder
 -> service
 -> module
 
-decorator: @Module -> @Controller -> @Injectable(Service) -> @Entity -> @PrimaryGeneratedColumn -> @Column
-dto decorator-> @IsEmail @IsString @MinLength
+decorator: @Module -> @Controller -> @Injectable(Service) -> @Entity
+
+controller decorator -> @Post, @Body, @Param @Patch @Delete @Get
+service decorator -> @Injectable -> @InjectRepository
+dto decorator -> @IsEmail @IsString @MinLength @IsOptional
+entity decorator -> @PrimaryGeneratedColumn -> @Column , hooks decorator (@AfterInsert, @AfterRemove, @AfterUpdate, @Exclude)
 
 new item -> item.module (setup) -> app.module (setup)
 
