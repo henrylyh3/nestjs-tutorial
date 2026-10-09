@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import type { Relation } from 'typeorm';
 import { User } from '../users/user.entity.js';
 
 @Entity()
@@ -31,5 +32,5 @@ export class Report {
   approved: boolean;
 
   @ManyToOne(() => User, (user) => user.reports)
-  user: User;
+  user: Relation<User>;
 }
