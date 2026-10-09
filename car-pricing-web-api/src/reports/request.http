@@ -1,0 +1,14 @@
+### Create a new report
+POST http://localhost:3000/reports
+content-type: application/json
+
+{
+    "make": "Toyota",
+    "model": "Corolla",
+    "year": 2020,
+    "price": 20000,
+    "mileage": 15000,
+    "lat": 34.0522,
+    "lng": -118.2437,
+    "approved": true
+}

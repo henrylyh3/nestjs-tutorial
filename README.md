@@ -18,14 +18,24 @@ folder
 
 decorator: @Module -> @Controller -> @Injectable(Service) -> @Entity
 
-controller decorator -> @Post, @Body, @Param @Patch @Delete @Get
+controller decorator -> @Post, @Body, @Param @Patch @Delete @Get, @UseInterceptors @ClassSerializerInterceptor @Session @UseGuards
 service decorator -> @Injectable -> @InjectRepository
 dto decorator -> @IsEmail @IsString @MinLength @IsOptional
 entity decorator -> @PrimaryGeneratedColumn -> @Column , hooks decorator (@AfterInsert, @AfterRemove, @AfterUpdate, @Exclude)
 
 new item -> item.module (setup) -> app.module (setup)
 
-command
+Encryption
+using salt and hash
+
+- salt random number and hash acoording the the salt
+- save salt and result
+- verify using the saved salt and has the input and compare result
+
+Interceptor (middleware)
+intercept incoming and outgoing request
+
+commands
 nest new . -> initiate new nest project
 nest g controller user -> create new user controller in its folder
 nest g module user -> create new user module in its folder

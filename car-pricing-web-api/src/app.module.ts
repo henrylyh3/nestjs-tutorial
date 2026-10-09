@@ -8,20 +8,34 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 import { User } from './users/user.entity.js';
 import { Report } from './reports/report.entity.js';
-
+import { ConfigModule, ConfigService } from '@nestjs/config';
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'better-sqlite3',
-      database: 'database.sqlite',
-      entities: [User, Report],
-      synchronize: true,
-      // host: 'localhost',
-      // port: 5432,
-      // username: 'your_username',
-      // password: 'your_password',
-      // database: 'your_database',
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: `.env.${process.env.NODE_ENV || 'development'}`,
     }),
+    TypeOrmModule.forRootAsync({
+      // imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        type: 'better-sqlite3',
+        database: configService.get<string>('DB_NAME'),
+        entities: [User, Report],
+        synchronize: true,
+      }),
+    }),
+    // TypeOrmModule.forRoot({
+    //   type: 'better-sqlite3',
+    //   database: 'database.sqlite',
+    //   entities: [User, Report],
+    //   synchronize: true,
+    //   // host: 'localhost',
+    //   // port: 5432,
+    //   // username: 'your_username',
+    //   // password: 'your_password',
+    //   // database: 'your_database',
+    // }),
     // Distributed tracing, auto-correlated logs, request/job metrics, error
     // telemetry, alarms, and more — out of the box. Sign up at https://observe.nestjs.com
     // ObserveModule.forRoot({
