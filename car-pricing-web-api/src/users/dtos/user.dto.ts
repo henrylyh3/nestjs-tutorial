@@ -1,4 +1,5 @@
 import { Expose, Exclude } from 'class-transformer';
+import e from 'express';
 
 export class UserDto {
     @Exclude()
@@ -9,4 +10,7 @@ export class UserDto {
 
     @Exclude()
     password: string;
+
+    @Expose()
+    admin: boolean;
 }

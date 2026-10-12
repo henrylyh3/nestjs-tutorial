@@ -3,12 +3,23 @@ POST http://localhost:3000/reports
 content-type: application/json
 
 {
-    "make": "Toyota",
-    "model": "Corolla",
-    "year": 2020,
+    "make": "ford",
+    "model": "mustang",
+    "year": 1982,
     "price": 20000,
-    "mileage": 15000,
-    "lat": 34.0522,
-    "lng": -118.2437,
+    "mileage": 50000,
+    "lat": 45,
+    "lng": 45
+}
+
+### update a report approval status
+PATCH http://localhost:3000/reports/9/approve
+content-type: application/json
+
+{
     "approved": true
 }
+
+### Get Estimate
+GET http://localhost:3000/reports?make=ford&model=mustang&year=1981&lng=45&lat=45&mileage=50000
+content-type: application/json

@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Session, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, Session, UseGuards } from '@nestjs/common';
 import { CreateReportDto } from './dtos/create-report.dto.js';
 import { ReportsService } from './reports.service.js';
 import { AuthGuard } from '../guard/auth.guard.js';
@@ -7,6 +7,9 @@ import { User } from '../users/user.entity.js';
 import { Report } from './report.entity.js';
 import { Serialize } from '../interceptors/serialize.interceptop.js';
 import { ReportDto } from './dtos/report.dto.js';
+import { ApproveReportDto } from './dtos/approve-report.dto.js';
+import { AdminGuard } from '../guard/admin.guard.js';
+import { GetEstimateDto } from './dtos/get-estimate.dto.js';
 
 @Controller('reports')
 export class ReportsController {
@@ -20,23 +23,17 @@ export class ReportsController {
         return this.reportsService.create(body, user);
     }
     
+    @Patch('/:id/approve')
+    @Serialize(ReportDto)
+        @UseGuards(AuthGuard)
+    @UseGuards(AdminGuard)
+    approveReport(@Param('id') id: string, @Body() body: ApproveReportDto) {
+        return this.reportsService.changeApproval(id, body.approved);
+    } 
+
     @Get()
-    async getAllReports() {
-        return await this.reportsService.findAll();
+    getEstimate(@Query() query: GetEstimateDto) {
+        console.log(query);
+        return this.reportsService.getEstimate(query);
     }
-
-    @Get('/:id')
-    async getReportById(@Param('id') id: string) {
-        return await this.reportsService.findOne(id);
-    }
-
-    @Patch('/:id')
-    async updateReport(@Param('id') id: string, @Body() body: CreateReportDto) {
-        return await this.reportsService.update(id, body);
-    }
-
-    @Delete('/:id')
-    async deleteReport(@Param('id') id: string) {
-        return await this.reportsService.delete(id);
-    }   
 }

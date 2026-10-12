@@ -20,7 +20,7 @@ decorator: @Module -> @Controller -> @Injectable(Service) -> @Entity
 
 controller decorator -> @Post, @Body, @Param @Patch @Delete @Get, @UseInterceptors @ClassSerializerInterceptor @Session @UseGuards
 service decorator -> @Injectable -> @InjectRepository
-dto decorator -> @IsEmail @IsString @MinLength @IsOptional
+dto decorator -> @IsEmail @IsString @MinLength @IsOptional @Expose @Transform(to extract value from class to new variable)
 entity decorator -> @PrimaryGeneratedColumn -> @Column , hooks decorator (@AfterInsert, @AfterRemove, @AfterUpdate, @Exclude)
 
 new item -> item.module (setup) -> app.module (setup)
@@ -32,8 +32,15 @@ using salt and hash
 - save salt and result
 - verify using the saved salt and has the input and compare result
 
-Interceptor (middleware)
+Interceptor (something like middleware)
+Request -> Middleware -> Guards -> Interceptor -> Request Handler -> Interceptor -> Middleware (if any) -> Response
 intercept incoming and outgoing request
+
+Association (Foreign key)
+@ManyToOne
+@OneToMany
+@OneToOne
+@ManyToMany
 
 commands
 nest new . -> initiate new nest project

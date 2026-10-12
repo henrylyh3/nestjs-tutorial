@@ -1,7 +1,6 @@
 import {
   IsString,
   IsNumber,
-  IsBoolean,
   Min,
   Max,
   IsLatitude,
@@ -35,7 +34,4 @@ export class CreateReportDto {
   @Min(0)
   @Max(1000000)
   price: number;
-
-  @IsBoolean()
-  approved: boolean;
 }
